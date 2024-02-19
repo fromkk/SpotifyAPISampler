@@ -16,6 +16,7 @@ public protocol SpotifyAPIClient {
 public enum SpotifyAPIClientError: Error {
     case noClientId
     case noClientSecret
+    case failed
 }
 
 public final class DefaultSpotifyAPIClient: SpotifyAPIClient {
@@ -95,7 +96,7 @@ public final class DefaultSpotifyAPIClient: SpotifyAPIClient {
 
             return results
         default:
-            return []
+            throw SpotifyAPIClientError.failed
         }
     }
 }
